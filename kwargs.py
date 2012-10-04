@@ -12,6 +12,10 @@ def funct(arg1, arg2, arg3, *args, **kwargs):
     print "3=", arg3
     print "args=", args
     print kwargs
+
+def lots_of_parms(**kwargs):
+    return "string {name} {address}".format(**kwargs)
+
     
 args = [1, 2, 3, 4, 5, 6]
 
@@ -27,3 +31,5 @@ kwargs = {'arg1': 1,
           'arg3': "THREE",
           'class': "done"}
 funct(**kwargs)
+
+print lots_of_parms(name="so and so", address="123")
