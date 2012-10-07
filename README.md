@@ -1,3 +1,9 @@
-Project for Intro to Python class: A [PDB](http://www.rcsb.org) file parser.
+In-class examples and projects for Intro to Python class
+* * *
 
-Given a PDB ID, prints some basic information about the protein. Function definitions and variable names follow the assignment spec.
+* __parser.py__: A [PDB](http://www.rcsb.org) file parser. Given a PDB ID, prints some basic information about the protein. Function definitions and variable names follow the assignment spec.
+
+* __webpage.py__: Basic HTML templatter.
+
+* __words.py__: Tallies space-delimited words in a file.
+
