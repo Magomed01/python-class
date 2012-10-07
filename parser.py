@@ -79,7 +79,7 @@ def parse_atom_line(line):
 # Goes through all PDB lines and tallies properties for the protein as a whole
 # Returns a PDB dictionary representing the tallied values for the protein
 def parse_pdb(pdb_lines):
-    pdb = {'id': None, 'atom_count': 0, 'corners': None, 'volume': 0}
+    pdb = {'id': None, 'title': '', 'atom_count': 0, 'corners': None, 'volume': 0}
     residues = {}
     atom_count = 0
     x_range = (None, None)
@@ -103,7 +103,7 @@ def parse_pdb(pdb_lines):
             else:
                 residues[residue] = 1
         elif is_title_line(line):
-            pdb['title'] = line[10:]
+            pdb['title'] = pdb['title'].rstrip() + line[10:] + ' '
         elif is_header_line(line):
             pdb['id'] = line[62:66]
     pdb['atom_count'] = atom_count
