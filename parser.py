@@ -5,7 +5,7 @@
 
 # Parses a valid Protein Data Bank (PDB) format text file for a protein.
 
-import os, requests, sys
+import argparse, os, requests, sys
 
 def atom_element(atom):
     return atom[0]
@@ -162,16 +162,20 @@ def volume(x_range, y_range, z_range):
     return x * y * z
 
 def main():
-  id = "1HHO"
-  filename= id + '.pdb'
+  parser = argparse.ArgumentParser(add_help=True)
+  parser.add_argument('id', action="store")
+  opts = parser.parse_args()
+  filename= opts.id + '.pdb'
   if not os.path.exists(filename):
-    download_pdb(id)
+    fh = open(filename, "w")
+    fh.write(download_pdb(opts.id))
+    fh.close()
   pdbfile = openfile(filename)
   pdb = parse_pdb(pdb_lines(pdbfile))
-  print "TITLE: {0}".format(pdb_title(pdb))
-  print "ID: {0}".format(pdb_id(pdb))
-  print "ATOM COUNT: {0}".format(pdb_atom_count(pdb))
-  print "CORNERS: {0}".format(pdb_bounding_box_corners(pdb))
-  print "VOLUME: {0}".format(pdb_bounding_box_volume(pdb))
+  print "TITLE: ", pdb_title(pdb)
+  print "ID: ", pdb_id(pdb)
+  print "ATOM COUNT: ", pdb_atom_count(pdb)
+  print "CORNERS: ", pdb_bounding_box_corners(pdb)
+  print "VOLUME: ", pdb_bounding_box_volume(pdb)
 
 main()
