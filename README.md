@@ -7,3 +7,6 @@ In-class examples and projects for Intro to Python class
 
 * __words.py__: Tallies space-delimited words in a file.
 
+* __namedtuple.py__: Named tuples
+
+* __classes-demo.py__: Example for classes
