@@ -1,4 +1,4 @@
-#!/usr/bin python
+#!/usr/bin/python
 # Robert Theis
 # Sept. 15, 2012
 # Introduction to Python Programming
