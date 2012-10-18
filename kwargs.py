@@ -25,7 +25,7 @@ funct(*args)
 # Specifying args by their parameter name in the function
 funct(arg2="abc", arg1="hello", arg3="yes", body="YES")
 
-# Keyword arguments
+# Keyword arguments: We're specifying our own new variable names here
 kwargs = {'arg1': 1,
           'arg2': "two",
           'arg3': "THREE",
