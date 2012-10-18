@@ -9,19 +9,38 @@ In-class example of classes.
 
 class Person(object):
     # constructor is __init__
-    def __init__(self, first, last, number):
+    def __init__(self, first, last, number, city, state, zip, sex, height):
         self.firstname = first.title() # Capitalize first letter
         self.lastname = last
         self.phone = number
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.sex = sex
+        self.heigh = height
     def fullname(self):
         return "{0} {1}".format(self.firstname, self.lastname)        
     def isLongDistance(self, areaCode):
         return self.phone[0:3] != str(areaCode)
-
+    def setPhoneNumber(self, phone):
+        self.phone = phone
+    def setFirstName(self, firstname):
+        self.firstname = firstname
+    def setLastName(self, lastname):
+        self.lastname = lastname
+    def setSex(self, sex):
+        self.sex = sex
+    def setHeight(self, height):
+        self.height = height        
         
 t = Person("teague",
            "Jones",
-           "415-867-5309")
+           "415-867-5309",
+           "SF",
+           "CA",
+           94122,
+           "M",
+           100)
 
 
 # Access the firstname property
@@ -35,6 +54,7 @@ print Person.fullname(t)
 
 print t.isLongDistance('410')
 
-# TODO Add city, state, zip, plus two more(your choice), setPhoneNumber,
-# setFirstName, setLastName
+t.setLastName('Jones')
+
+print t.lastname, ' ', t.city, ', ', t.state
 
