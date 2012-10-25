@@ -39,20 +39,62 @@ class Person(object):
         self.height = height        
 
 class AddressBook(object):
-    def __init__(self, people=None):
+    def __init__(self, people=None):  
         if people is None:
-            people = "None"
-        self.people = people
+            self.people = []
+        else:
+            self.people = people
+    def first(self):
+        return self.first
+    def last(self):
+        return self.last
+    def phone(self):
+        return self.phone
     def addPerson(self, person):
-        #self.people.append(person)
-        return
-    def findByLastNam(self, lastname):
+        self.people.append(person)
+    def findByLastName(self, lastname):
         found = AddressBook()
         for person in self.people:
             if lastname == person.last:
                 found.addPerson(person)
         return found
-        
+    def getPeople(self):
+        people = []
+        # .extend() is like append, but appends a list
+        people.extend(self.people)
+        return people # or just do self.people[:]
+    def firstBeginsWith(self, prefix):
+        found = [] # initialize our list
+        for person in self.people:
+            if person.first().lower().startswith(prefix.lower()):
+                found.append(person)
+        """
+ Note: Could do this whole method in a single line as a list comprehension:
+ return AddressBook([person for person in self.people if \
+                     person.first().lower().startswith(person.lower())])
+        """
+        # return a *new* address book here
+        return AddressBook(found) 
+    def getByName(self, first, last):
+        found = AddressBook()
+        for person in self.person:        
+            if person.first() == first and person.last() == last:
+                found.add(person)
+        return found
+#    # print to CSV
+#    def export(self, path):
+#        with open(path, mode="w") as f: # f is a filehandle
+#            for person in self.people:
+#                #print("\t".join([person.first(), person.last(), person.phone()]), file=f)
+#                print "entry" #syntax above is wrong
+#        
+#    def import(self, path):
+#        self.add(Person(*line.split())) # clever! dump all arguments as a splat arg
+#        open(path, mode="r") as f:
+#            for line in f:
+#                self.add(Person(#line.split()))
+                
+
 try:
   t = Person("teague",
            "Smith",
@@ -62,7 +104,6 @@ try:
            94122,
            "M",
            100)
-
 
   # Access the firstname property
   print t.firstname
