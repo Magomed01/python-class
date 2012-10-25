@@ -25,7 +25,10 @@ class Person(object):
             return False
         return self.phone[0:3] != str(areaCode)
     def setPhoneNumber(self, phone):
-        self.phone = phone
+        if phone.isdigit() and len(phone) in [7,10]:
+          self.phone = phone
+        else:
+          raise ValueError("Phone number must be a 7 or 10-digit string.")
     def setFirstName(self, firstname):
         self.firstname = firstname
     def setLastName(self, lastname):
@@ -41,7 +44,8 @@ class AddressBook(object):
             people = "None"
         self.people = people
     def addPerson(self, person):
-        self.people.append(person)
+        #self.people.append(person)
+        return
     def findByLastNam(self, lastname):
         found = AddressBook()
         for person in self.people:
@@ -49,8 +53,8 @@ class AddressBook(object):
                 found.addPerson(person)
         return found
         
-
-t = Person("teague",
+try:
+  t = Person("teague",
            "Smith",
            "415-867-5309",
            "SF",
@@ -60,25 +64,27 @@ t = Person("teague",
            100)
 
 
-# Access the firstname property
-print t.firstname
+  # Access the firstname property
+  print t.firstname
 
-# Call the fullname method
-print t.fullname() # Fullname is a fuction, do don't forget the parentheses  
+  # Call the fullname method
+  print t.fullname() # Fullname is a fuction, do don't forget the parentheses  
 
-# Do the same thing, again
-print Person.fullname(t)
+  # Do the same thing, again
+  print Person.fullname(t)
 
-print t.isLongDistance('410')
+  print t.isLongDistance('410')
 
-t.setLastName('Jones')
+  t.setLastName('Jones')
 
-print t.lastname, ' ', t.city, ', ', t.state
-t.setPhoneNumber("555-1212")
-print t.isLongDistance("408")
-t.setPhoneNumber("313-555-1212")
-print t.isLongDistance("408")
-print t.isLongDistance("313")
+  print t.lastname, ' ', t.city, ', ', t.state
+  t.setPhoneNumber("555---1212")
+  print t.isLongDistance("408")
+  t.setPhoneNumber("3135551212")
+  print t.isLongDistance("408")
+  print t.isLongDistance("313")
+except ValueError as e:
+  print("Error: " + str(e))
 
 book = AddressBook()
 book.addPerson("Wright")
