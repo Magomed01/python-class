@@ -7,6 +7,8 @@ In-class example of classes.
 @author: robert
 """
 
+from collections import Counter
+
 class Person(object):
     # constructor is __init__
     def __init__(self, first, last, number, city, state, zipcode, sex, height):
@@ -81,6 +83,30 @@ class AddressBook(object):
             if person.first() == first and person.last() == last:
                 found.add(person)
         return found
+
+    def firstLetterCounts(self):
+        letters = [l for l in 'abcdefghijklmnopqrstuvwxyz']
+        counts = Counter(letters) # Counter is like a dict
+        for person in self: # we can do this because we are overiding __iter__
+            letter = person.first()[0]
+            counts[letter] += 1
+        return counts
+
+    # Override the iterator
+    def __iter__(self):
+        for person in self.people:
+            yield person
+    
+    # Override the equality comparator
+    def __eq__(self, p2):
+        return (self.first() == p2.first() \
+           and self.last() == p2.last() \
+           and self.phone() == p2.phone())
+
+    # Convert object to a string
+    def __str__(self):
+        return self.first()
+"""
 #    # print to CSV
 #    def export(self, path):
 #        with open(path, mode="w") as f: # f is a filehandle
@@ -93,7 +119,14 @@ class AddressBook(object):
 #        open(path, mode="r") as f:
 #            for line in f:
 #                self.add(Person(#line.split()))
-                
+"""
+
+p1 = Person("Joe", "Jones", "1234567890", "SF", "CA", "12345", "M", 100)
+p2 = Person("Ralph", "Miller", "3333567890", "SF", "CA", "54321", "M", 100)
+print 'comparison: ', (p1 == p2)
+print p1
+
+#print p1.firstLetterCounts() # doesn't work
 
 try:
   t = Person("teague",
