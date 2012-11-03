@@ -56,11 +56,14 @@ def closest_nearby_word(word):
     if not nearby: return set()
     return max(nearby, key=NWORDS.get) or set()
 
-print correct('speling')
+#print correct('speling')
 
+# Run some test cases for finding "nearby" words
 for w in frozenset(['rational', 'woman', 'rogue', 'effect', 'started', 'rein',
                     'scalded', 'mislead', 'reality', 'whit', 'marshal', 'voila',
                     'aide', 'tiered', 'county', 'fires', 'stated', 'soldier',
                     'beset', 'affect', 'vice', 'wreck', 'spayed', 'complimentary',
-                    'their']):
+                    'their', 'principal', 'moral', 'especially', 'steal',
+                    'personal', 'why', 'heroine', 'descendant', 'baited',
+                    'interested', 'sole', 'think', 'physics', 'corps', 'discrete']):
     print w, "-", closest_nearby_word(w)
