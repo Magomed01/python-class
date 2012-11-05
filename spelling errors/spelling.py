@@ -54,7 +54,7 @@ def closest_nearby_word(word):
         if (e != word):
             nearby.add(e)
     if not nearby: return set()
-    return max(nearby, key=NWORDS.get) or set()
+    return max(nearby, key=NWORDS.get)
 
 #print correct('speling')
 
