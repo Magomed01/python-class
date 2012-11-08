@@ -39,5 +39,5 @@ else:
 # Print mode
 cnt = Counter(values)
 mode = cnt.most_common(1)[0]
-print "Mode:", mode[0]
+print "Mode:", mode[0] # printing this way seems really hokey
 
